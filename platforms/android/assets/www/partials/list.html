@@ -1,0 +1,31 @@
+<!-- <ion-header-bar class="bar marvelRed mynavbar">
+
+	<h1 class="title mynavbar"><img src="img/marvel-logo.png" class="logo" alt="Marvel Logo"></h1>
+</ion-header-bar> -->
+
+<ion-content id="mainPost" class="has-header">
+	<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+	</ion-refresher>
+	<div id="mainHeader">
+		<h1 class="col col-80 col-offset-10">Marvel Character Guide</h1>
+		<p class="col col-80 col-offset-10">Select a Character below to see which Marvel comics they appear in</p>
+	</div>
+	</ion-pane>
+		<ion-list id="mainList">
+			<ion-item class="row listItems" ng-repeat="character in characters">
+				<div class="centerCropped"  height="600px" style="background-image: url({{character.thumbnail.path}}.{{character.thumbnail.extension}});"></div>
+				<p class="col characterName">
+					<a href="#/details" ng-click="secondCall(character.comics.collectionURI+apikey, $event)">{{character.name | uppercase}}
+					</a>
+				</p>
+			</ion-item>
+		</ion-list>
+		<ion-infinite-scroll
+	    on-infinite="loadMore()"
+	    spinner="ionSpinner"
+	    spinner-class="spinner-light"
+	    distance="5%">
+	  </ion-infinite-scroll>
+</ion-content>
+<!-- <ion-footer-bar class="bar-stable">
+</ion-footer-bar> -->

@@ -1,0 +1,31 @@
+<ion-header-bar class="bar marvelRed mynavbar">
+	<h1 class="title mynavbar"><img src="img/marvel-logo.png" class="logo" alt="Marvel Logo"></h1>
+</ion-header-bar>
+<ion-content id="mainPost" class="padding">
+<!-- <h2 data-ng-bind-html="title"></h2>
+<p data-ng-bind-html="fullPost"></p> -->
+<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
+
+	<ion-list id="mainList">
+	<!-- {{titles}}{{titles.id}}{{titles.description}} -->
+	<p ng-if="!stories">Sorry, there are no stories associated with this character.</p>
+		<ion-item class="listItems item-text-wrap" ng-repeat="story in stories">
+		<!-- <div class="centerCropped"  height="600px" style="background-image: url({{character.thumbnail.path}}.{{character.thumbnail.extension}});"></div> -->
+			<!-- <figure><img width="80px" height="80px" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"></figure> -->
+			<span class="titleName col col-80 col-offset-10">{{story.title | uppercase}}</span>
+			<p class="seriesCopy col col-80 col-offset-10"> Series: {{story.series.name}}</p>
+			<p class="titleCopy col col-80 col-offset-10"> {{story.description}}</p>
+		</ion-item>
+		<p></p>
+	</ion-list>
+	<ion-infinite-scroll
+    on-infinite="loadMore()"
+    spinner="ionSpinner"
+    spinner-class="spinner-light"
+    distance="5%">
+  </ion-infinite-scroll>
+	
+</ion-content>
+<ion-footer-bar class="bar-stable">
+	<button class="button button-dark icon-left ion-home" ng-click="goHome()">Home</button>
+</ion-footer-bar>
